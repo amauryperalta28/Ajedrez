@@ -110,11 +110,17 @@
     <Compile Include="DragAndDropTools\DragAndDropController.cs" />
     <Compile Include="DragAndDropTools\IDragAndDropItem.cs" />
     <Compile Include="DragAndDropTools\Item.cs" />
+    <Compile Include="Models\Alfil.cs" />
+    <Compile Include="Models\Caballo.cs" />
     <Compile Include="Models\Casilla.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Ficha.cs" />
     <Compile Include="Models\manejadorDeTurnos.cs" />
+    <Compile Include="Models\Peon.cs" />
+    <Compile Include="Models\Reina.cs" />
+    <Compile Include="Models\Rey.cs" />
     <Compile Include="Models\Tablero.cs" />
+    <Compile Include="Models\Torre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

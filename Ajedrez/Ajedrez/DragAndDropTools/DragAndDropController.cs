@@ -484,19 +484,12 @@ namespace Ajedrez.DragAndDropTools
             
            
                 //Se verifica si es el turno del jugador rojo para jugar
-                if (itemToSelect.Color.Equals(Colores.Red) && manejadorDeTurnos.turnoJugadorRojo == true)
-                {
+                
                     itemToSelect.IsSelected = true;
                     _selectedItems.Add(itemToSelect);
                     
-                }
-                //Se verifica si es el turno del jugador negro para jugar
-                else if (itemToSelect.Color.Equals(Colores.Black) && manejadorDeTurnos.turnoJugadorNegro == true)
-                {
-                    itemToSelect.IsSelected = true;
-                    _selectedItems.Add(itemToSelect);
-                    
-                }
+                
+                
           
 
             
@@ -526,59 +519,12 @@ namespace Ajedrez.DragAndDropTools
                      *  al objeto seleccionado.  */
                     if ((posDestino.X > casillaEvaluada.Posicion.X && posDestino.X <= casillaEvaluada.Posicion.X + 80) && (posDestino.Y > casillaEvaluada.Posicion.Y && posDestino.Y <= casillaEvaluada.Posicion.Y + 80))
                     {
-                             // Se verifica si la ficha seleccionada tiene que comer otra ficha                   
-                           if (jugadorDebeComer(fichaSeleccionada.Color) && fichaPuedeComer(fichaSeleccionada) && fichaSeleccionada.esJugadaParaComerFicha(casillaEvaluada.Posicion))
-                             {
-                                 posDestino = casillaEvaluada.Posicion;
-
-                                 // Se elimina la ficha comida
-                                 identificarYEliminarFicha(fichaSeleccionada.Position, casillaEvaluada.Posicion);
-                                 itemToDeselect.Position = posDestino;
-                                 canNotMove = false;
-
-                                   // Se verifica el color para ceder el turno al otro jugador
-                                     if (fichaSeleccionada.Color == Colores.Red)
-                                     {
-                                             // Se verifica si la ficha puede seguir comiendo
-                                             if (fichaPuedeComer(itemToDeselect) == false)
-                                             {
-                                                 manejadorDeTurnos.turnoJugadorRojo = false;
-                                                 manejadorDeTurnos.turnoJugadorNegro = true;
-                                             }
-                                     }
-                                     else
-                                     {
-                                             // Se verifica si la ficha puede seguir comiendo
-                                             if (fichaPuedeComer(itemToDeselect) == false)
-                                             {
-                                                 manejadorDeTurnos.turnoJugadorNegro = false;
-                                                 manejadorDeTurnos.turnoJugadorRojo = true;
-                                             }
-                                 
-                                     }
-
-                        
-                             }
-                            else if (fichaSeleccionada.canMove(posFichaSeleccionada, casillaEvaluada.Posicion) == 1 && estatusCasilla(casillaEvaluada.Posicion).NohayUnaFicha && !jugadorDebeComer(fichaSeleccionada.Color))
-                            {
-                                    posDestino = casillaEvaluada.Posicion;
-                                    itemToDeselect.Position = posDestino;
-                                    canNotMove = false;
-
-                                    // Se verifica el color para ceder el turno al otro jugador
-                                    if (fichaSeleccionada.Color == Colores.Red)
-                                    {
-                                        manejadorDeTurnos.turnoJugadorRojo = false;
-                                        manejadorDeTurnos.turnoJugadorNegro = true;
-                                    }
-                                    else
-                                    {
-                                        manejadorDeTurnos.turnoJugadorNegro = false;
-                                        manejadorDeTurnos.turnoJugadorRojo = true;
-                                    }
-
-                            
-                            }
+                        if (fichaSeleccionada.canMove(posFichaSeleccionada, casillaEvaluada.Posicion) == 1)
+                        {
+                            itemToDeselect.Position = casillaEvaluada.Posicion;
+                            canNotMove = false;
+                        }
+                                                           
                     }
                 }
             
@@ -587,7 +533,7 @@ namespace Ajedrez.DragAndDropTools
                  itemToDeselect.Position = posFichaSeleccionada;
             
             _selectedItems.Remove(itemToDeselect);
-            fichaSeleccionada.removeJugadasParaComerFicha();
+            
         } 
         #endregion
 

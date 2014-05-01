@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Ajedrez.DragAndDropTools;
+using DragAndDrop;
+using Ajedrez.Models;
 
 namespace Ajedrez
 {
@@ -22,6 +25,7 @@ namespace Ajedrez
         Texture2D inGameScreen;
 
         Tablero board;
+        private DragAndDropController<Item> _dragDropController;
 
         /**Variables para almacenar posicion actual del puntero*/
         MouseState _currentMouse;
@@ -63,14 +67,46 @@ namespace Ajedrez
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            _dragDropController = new DragAndDropController<Item>(this, spriteBatch);
+            Components.Add(_dragDropController);
             
 
             // TODO: use this.Content to load your game content here
 
             board = new Tablero(Content, spriteBatch, this);
+            SetupDraggableItems();
 
             // Se carga la imagen de fondo de madera del juego
             inGameScreen = Content.Load<Texture2D>(@"Images/fondo");
+        }
+        protected void SetupDraggableItems()
+        {
+
+            _dragDropController.Clear();
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Casilla c1 = board.Casillas[j, i];
+                    // Si hay una ficha en la casilla insertala en el dragAndDropController
+                    if (c1.FichaContenida != null)
+                    {
+                        if (c1.FichaContenida.Color == Colores.Black)
+                        {
+                            Ficha item = new Reina(spriteBatch, Colores.Black, c1.Posicion, Content);
+                            _dragDropController.Add(item);
+                        }
+                        else
+                        {
+                            //Ficha item = new Black(spriteBatch, c1.FichaContenida.Texture, c1.Posicion);
+                            //_dragDropController.Add(item);
+
+                        }
+                    }
+
+                }
+            }
         }
 
         /// <summary>
@@ -121,6 +157,10 @@ namespace Ajedrez
             // Dibuja el fondo de madera debajo del tablero
                 spriteBatch.Draw(inGameScreen, Vector2.Zero, null, Color.White);
                 board.draw(spriteBatch, _currentMousePosition, gameTime);
+
+                // Se dibujan las fichas en el tablero
+                foreach (var item in _dragDropController.Items)
+                { item.Draw(gameTime); }
 
             spriteBatch.End();
 

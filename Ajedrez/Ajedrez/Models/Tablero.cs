@@ -109,6 +109,21 @@ namespace Ajedrez
         */
        protected void setFichasTablero(ContentManager content, SpriteBatch spriteBatch)
        {
+           Texture2D ImgfichaNegra = content.Load<Texture2D>("Images/ficha1");
+           //Texture2D ImgfichaRoja = content.Load<Texture2D>("Images/ficha2");
+           // Se colocan las fichas negras en el tablero
+           for (int j = 0; j < 3; j++)
+           {
+               for (int i = 0; i < casillas.GetLength(1); i++)
+               {
+                   if (casillas[j, i].Color == 0)
+                   {
+                       var fichaNegra = new Reina(spriteBatch, Colores.Black, casillas[j, i].Posicion,content);
+
+                       casillas[i, j].FichaContenida = fichaNegra;
+                   }
+               }
+           }
                       
        
        }
