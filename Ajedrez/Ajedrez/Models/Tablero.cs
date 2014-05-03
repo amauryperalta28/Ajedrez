@@ -109,20 +109,56 @@ namespace Ajedrez
         */
        protected void setFichasTablero(ContentManager content, SpriteBatch spriteBatch)
        {
-           Texture2D ImgfichaNegra = content.Load<Texture2D>("Images/ficha1");
-           //Texture2D ImgfichaRoja = content.Load<Texture2D>("Images/ficha2");
-           // Se colocan las fichas negras en el tablero
-           for (int j = 0; j < 3; j++)
-           {
-               for (int i = 0; i < casillas.GetLength(1); i++)
-               {
-                   if (casillas[j, i].Color == 0)
-                   {
-                       var fichaNegra = new Reina(spriteBatch, Colores.Black, casillas[j, i].Posicion,content);
+          
+           
+           // Se colocan las fichas del jugador negro
 
-                       casillas[i, j].FichaContenida = fichaNegra;
-                   }
-               }
+           //Se colocan las torres
+           casillas[0, 0].FichaContenida = new Torre(spriteBatch, Colores.Black, casillas[0, 0].Posicion, content);
+           casillas[7, 0].FichaContenida = new Torre(spriteBatch, Colores.Black, casillas[7, 0].Posicion, content);
+
+           //Se colocan los caballos
+           casillas[1, 0].FichaContenida = new Caballo(spriteBatch, Colores.Black, casillas[1, 0].Posicion, content);
+           casillas[6, 0].FichaContenida = new Caballo(spriteBatch, Colores.Black, casillas[6, 0].Posicion, content);
+
+           //Se colocan los alfiles
+           casillas[2, 0].FichaContenida = new Alfil(spriteBatch, Colores.Black, casillas[2, 0].Posicion, content);
+           casillas[5, 0].FichaContenida = new Alfil(spriteBatch, Colores.Black, casillas[5, 0].Posicion, content);
+
+           //Se colocan el Rey y Reina
+           casillas[3, 0].FichaContenida = new Reina(spriteBatch, Colores.Black, casillas[3, 0].Posicion, content);
+           casillas[4, 0].FichaContenida = new Rey(spriteBatch, Colores.Black, casillas[4, 0].Posicion, content);
+
+           // Se colocan los peones 
+           for (int i = 0; i < 8; i++)
+           {
+               casillas[i, 1].FichaContenida = new Peon(spriteBatch, Colores.Black, casillas[i, 1].Posicion, content);
+           
+           }
+
+               // Se colocan las fichas del jugador Blanco
+
+           //Se colocan las torres
+           casillas[0, 7].FichaContenida = new Torre(spriteBatch, Colores.White, casillas[0, 7].Posicion, content);
+           casillas[7, 7].FichaContenida = new Torre(spriteBatch, Colores.White, casillas[7, 7].Posicion, content);
+
+           //Se colocan los caballos
+           casillas[1, 7].FichaContenida = new Caballo(spriteBatch, Colores.White, casillas[1, 7].Posicion, content);
+           casillas[6, 7].FichaContenida = new Caballo(spriteBatch, Colores.White, casillas[6, 7].Posicion, content);
+                       
+           //Se colocanlos alfiles
+           casillas[2, 7].FichaContenida = new Alfil(spriteBatch, Colores.White, casillas[2, 7].Posicion, content);
+           casillas[5, 7].FichaContenida = new Alfil(spriteBatch, Colores.White, casillas[5, 7].Posicion, content);
+                       
+           //Se colocanel Rey y Reina
+           casillas[3, 7].FichaContenida = new Reina(spriteBatch, Colores.White, casillas[3, 7].Posicion, content);
+           casillas[4, 7].FichaContenida = new Rey(spriteBatch, Colores.White, casillas[4, 7].Posicion, content);
+
+           // Se colocan los peones
+           for (int i = 0; i < 8; i++)
+           {
+               casillas[i, 6].FichaContenida = new Peon(spriteBatch, Colores.White, casillas[i, 6].Posicion, content);
+
            }
                       
        

@@ -18,13 +18,13 @@ namespace Ajedrez.Models
             if (colorFicha.Equals(Colores.Black))
             {
                 base.Color = Colores.Black;
-                base.Texture = Content.Load<Texture2D>(@"Images/ficha1");// AlfilB
+                base.Texture = Content.Load<Texture2D>(@"Images/Fichas/AlfilB");// AlfilB
             
             }
             else if (colorFicha.Equals(Colores.White))
             {
                 base.Color = Colores.White;
-                base.Texture = Content.Load<Texture2D>(@"Images/fondo");//AlfilW
+                base.Texture = Content.Load<Texture2D>(@"Images/Fichas/AlfilW");//AlfilW
 
             }
            

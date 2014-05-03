@@ -92,17 +92,11 @@ namespace Ajedrez
                     // Si hay una ficha en la casilla insertala en el dragAndDropController
                     if (c1.FichaContenida != null)
                     {
-                        if (c1.FichaContenida.Color == Colores.Black)
-                        {
-                            Ficha item = new Reina(spriteBatch, Colores.Black, c1.Posicion, Content);
-                            _dragDropController.Add(item);
-                        }
-                        else
-                        {
-                            //Ficha item = new Black(spriteBatch, c1.FichaContenida.Texture, c1.Posicion);
-                            //_dragDropController.Add(item);
 
-                        }
+                        Ficha item = c1.FichaContenida;
+                            _dragDropController.Add(item);
+                        
+                        
                     }
 
                 }
