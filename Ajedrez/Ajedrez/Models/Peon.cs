@@ -40,27 +40,46 @@ namespace Ajedrez.Models
        * 
        * @return      1 si se puede mover, 0 de lo contrario.
        */
-        public override int canMove(Vector2 posicionInicial, Vector2 PosicionFinal)
+        public override int canMove(Vector2 posicionInicial, Vector2 PosicionFinal, List<Ficha> listaFichas)
         {
             //Variables en la que se insertan las posiciones validas para moverse
-            Vector2[] posicionesValidas = new Vector2[4];
+            Vector2[] posicionesValidas = new Vector2[6];
             int IndexValidmove = 0;
 
             // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
             // Se verifica si el peon es blanco
+            
             if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y - 80) == 1)
             {
                 posicionesValidas[IndexValidmove].X = posicionInicial.X;
                 posicionesValidas[IndexValidmove].Y = posicionInicial.Y - 80;
                 IndexValidmove++;
 
+                if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y - 160) == 1 && posicionInicial.Y == 500)
+                {
+                    posicionesValidas[IndexValidmove].X = posicionInicial.X;
+                    posicionesValidas[IndexValidmove].Y = posicionInicial.Y - 160;
+                    IndexValidmove++;
+
+                }
+                
+
             }
+            
             // Se verifica si el peon es negro
             else if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 80) == 1)
             {
                 posicionesValidas[IndexValidmove].X = posicionInicial.X;
                 posicionesValidas[IndexValidmove].Y = posicionInicial.Y + 80;
                 IndexValidmove++;
+
+                if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 160) == 1 && posicionInicial.Y.Equals(100))
+                {
+                    posicionesValidas[IndexValidmove].X = posicionInicial.X;
+                    posicionesValidas[IndexValidmove].Y = posicionInicial.Y + 160;
+                    IndexValidmove++;
+
+                }
 
             }
 
@@ -77,6 +96,18 @@ namespace Ajedrez.Models
             return 0;
 
 
+        }
+
+        /** @brief Determina si la ficha puede capturar otra ficha
+        *         Se insertan las posiciones validas para capturar 
+        *         en la lista de posiblesMovidascomer
+        *  @param[in]   FichasTablero       Esta es la lista de ficha del tablero
+        *  
+        *  @return      1 si puede capturar, 0 de lo contrario
+        */
+        public override bool canEat(List<Ficha> FichasTablero)
+        {
+            return true;
         }
     }
 }

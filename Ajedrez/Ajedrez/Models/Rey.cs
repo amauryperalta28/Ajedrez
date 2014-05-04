@@ -40,7 +40,7 @@ namespace Ajedrez.Models
         * 
         * @return      1 si se puede mover, 0 de lo contrario.
         */
-        public override int canMove(Vector2 posicionInicial, Vector2 PosicionFinal)
+       public override int canMove(Vector2 posicionInicial, Vector2 PosicionFinal, List<Ficha> listaFichas)
         {
             //Variables en la que se insertan las posiciones validas para moverse
             Vector2[] posicionesValidas = new Vector2[10];
@@ -124,6 +124,18 @@ namespace Ajedrez.Models
             return 0;
 
 
+        }
+
+        /** @brief Determina si la ficha puede capturar otra ficha
+         *         Se insertan las posiciones validas para capturar 
+         *         en la lista de posiblesMovidascomer
+         *  @param[in]   FichasTablero       Esta es la lista de ficha del tablero
+         *  
+         *  @return      1 si puede capturar, 0 de lo contrario
+         */
+        public override bool canEat(List<Ficha> FichasTablero)
+        {
+            return true;
         }
 
     }

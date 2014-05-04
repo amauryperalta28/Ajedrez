@@ -148,6 +148,7 @@ namespace Ajedrez.DragAndDropTools
             }
             estatusCasillaEvaluada.NohayUnaFicha = true;
             estatusCasillaEvaluada.colorDeLaFicha = Colores.White;
+
             return estatusCasillaEvaluada;
         }
 
@@ -297,31 +298,18 @@ namespace Ajedrez.DragAndDropTools
         
         }
 
-        /** @brief Determina la posicion de la ficha que debe eliminarse y la elimina
+        /** @brief Se elimina una ficha en una posicion indicada
          * 
-         * @param[in] posInicial            Esta es la posicion inicial de la ficha
-         * @param[in] posFinal              Esta es la posicion final de la ficha
+         * @param[in] posFichaACapturar            Esta es la posicion de la ficha a capturar
          * 
          * @return    no retorna nada
          * 
          */
-        public void identificarYEliminarFicha(Vector2 posInicial, Vector2 posFinal)
+        public void capturarFicha (Vector2 posFichaACapturar)
         {
-            Vector2 posFichaAEliminar= new Vector2(0,0);
+            
 
-            if (posFinal.X == posInicial.X + 160 && posFinal.Y == posInicial.Y - 160)
-                    posFichaAEliminar = new Vector2(posInicial.X + 80, posInicial.Y - 80);
-
-            else if (posFinal.X == posInicial.X - 160 && posFinal.Y == posInicial.Y - 160)
-                    posFichaAEliminar = new Vector2(posInicial.X - 80, posInicial.Y - 80);
-
-            else if (posFinal.X == posInicial.X + 160 && posFinal.Y == posInicial.Y + 160)
-                    posFichaAEliminar = new Vector2(posInicial.X + 80, posInicial.Y + 80);
-
-            else if (posFinal.X == posInicial.X - 160 && posFinal.Y == posInicial.Y + 160)
-                    posFichaAEliminar = new Vector2(posInicial.X - 80, posInicial.Y + 80);
-
-            //Recorro las fichas del tablero 
+            //Se recorre la lista de fichas del tablero 
           
             for (int i = _items.Count - 1; i >= 0; i--)
             {
@@ -329,7 +317,7 @@ namespace Ajedrez.DragAndDropTools
                 {
                     Ficha item = _items.ElementAt(i);
                    
-                    if (item.Position.Equals(posFichaAEliminar) )
+                    if (item.Position.Equals(posFichaACapturar) )
                     {
                         Remove(item);
                         return;
@@ -519,10 +507,18 @@ namespace Ajedrez.DragAndDropTools
                      *  al objeto seleccionado.  */
                     if ((posDestino.X > casillaEvaluada.Posicion.X && posDestino.X <= casillaEvaluada.Posicion.X + 80) && (posDestino.Y > casillaEvaluada.Posicion.Y && posDestino.Y <= casillaEvaluada.Posicion.Y + 80))
                     {
-                        if (fichaSeleccionada.canMove(posFichaSeleccionada, casillaEvaluada.Posicion) == 1)
+                        if (fichaSeleccionada.canMove(posFichaSeleccionada, casillaEvaluada.Posicion, _items) ==1 && estatusCasilla(casillaEvaluada.Posicion).NohayUnaFicha)
                         {
                             itemToDeselect.Position = casillaEvaluada.Posicion;
                             canNotMove = false;
+                        }
+                        else if (fichaSeleccionada.canEat(_items) && fichaSeleccionada.esJugadaParaComerFicha(casillaEvaluada.Posicion))
+                        {
+                            capturarFicha(casillaEvaluada.Posicion);
+                            itemToDeselect.Position = casillaEvaluada.Posicion;
+                            canNotMove = false;
+ 
+                        
                         }
                                                            
                     }

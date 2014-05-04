@@ -16,20 +16,24 @@ namespace Ajedrez.Models
       protected Vector2 posicion;       
 
       /* Atributo para almacenadar la posiciones finales despues de comer una ficha*/
-      private List<Vector2> posiblesMovidasComer = new List<Vector2>();
+      protected List<Vector2> posiblesMovidasComer = new List<Vector2>();
+
+      /* Atributo para almacenadar las posibles posiciones donde se puede mover la ficha*/
+      protected List<Vector2> posiblesMovidas = new List<Vector2>();
 
 
       /*Propiedad del atributo color*/
       public Colores Color { get { return this.color; } set { color = value; } }
-       
-      /** @brief Determina si la ficha se puede mover a una posicion indicada
-       * 
-       * @param[in]   posicionInicial             Es la posicion actual de la ficha
-       * @param[in]   PosicionFinal               Es la posicion a donde se pretende mover la ficha
-       * 
-       * @return      1 si se puede mover, 0 de lo contrario.
-       */
-      public abstract int canMove(Vector2 posicionInicial, Vector2 PosicionFinal);
+
+      /** @brief Determina si la ficha puede capturar otra ficha
+        *         Se insertan las posiciones validas para capturar 
+        *         en la lista de posiblesMovidascomer
+        *  @param[in]   FichasTablero       Esta es la lista de ficha del tablero
+        *  
+        *  @return      true si puede capturar, false de lo contrario
+        */
+       public abstract bool canEat(List<Ficha> FichasTablero);
+      
 
       /** @brief Determina si una posicion indicada, se encuentra dentro de las posiciones validas para comer una ficha 
        * 
@@ -73,7 +77,91 @@ namespace Ajedrez.Models
           posiblesMovidasComer.Clear();
       
       }
-          
+
+      /** @brief Determina si la ficha se puede mover a una posicion indicada
+      * 
+      * @param[in]   posicionInicial             Es la posicion actual de la ficha
+      * @param[in]   PosicionFinal               Es la posicion a donde se pretende mover la ficha
+      * 
+      * @return      1 si se puede mover, 0 de lo contrario.
+      */
+      public abstract int canMove(Vector2 posicionInicial, Vector2 PosicionFinal, List<Ficha> listaFichas);
+
+      /** @brief Determina si una posicion indicada, se encuentra dentro de las posiciones validas para moverse 
+      * 
+      * @param[in]   jugadaAEvaluar              Es la posicion que se va verificar
+      * 
+      * @return      true si es una jugada para mover, false de lo contrario.
+      */
+      public bool esJugadaMovimiento(Vector2 jugadaAEvaluar)
+      {
+          // Se recorre la lista de posibles movidas para comer
+          foreach (var jugada in posiblesMovidas)
+          {
+              //Se verifica si se encuentra la jugada a evaluar dentro 
+              //de la lista de posibles jugadas para comer
+              if (jugadaAEvaluar.Equals(jugada))
+              {
+                  return true;
+              }
+
+          }
+          return false;
+
+      }
+      /** @brief Inserta una posicion indicada en la lista de posibles Movidas 
+      * 
+      * @param[in]   posicion              Es la posicion a insertar
+      * 
+      * @return      no retorna nada
+      */
+      public void addJugadaMovimiento(Vector2 posicion)
+      {
+          posiblesMovidas.Add(posicion);
+      }
+
+      /** @brief Elimina una posicion indicada en la lista de posibles Movidas
+       * 
+       * @return      no retorna nada
+       */
+      public void removeJugadasMovimiento()
+      {
+          posiblesMovidas.Clear();
+
+      }
+
+      /** @brief Determina si en una posicion especificada se encuentra una ficha
+           * 
+           * @param[in]  posicionCasilla        Esta es la posicion que se va a evaluar
+           * @param[in]  listaFichas            Esta es la lista de fichas que estan en el tablero
+           * 
+           * @return     true si no hay una casilla, false de lo contrario 
+           * 
+           */
+      public estatusCasillas estatusCasilla(Vector2 posicionCasilla, List<Ficha> listaFichas)
+      {
+          estatusCasillas estatusCasillaEvaluada;
+          //Verifica Si hay un ficha que tenga la misma posicion a donde me quiero mover
+
+          foreach (var casillaEvaluada in listaFichas)
+          {
+              // Si hay una ficha en la posicion que estamos evaluando
+              if (posicionCasilla.X == casillaEvaluada.Position.X && posicionCasilla.Y == casillaEvaluada.Position.Y)
+              {
+
+                  estatusCasillaEvaluada.NohayUnaFicha = false;
+                  estatusCasillaEvaluada.colorDeLaFicha = casillaEvaluada.Color;
+
+                  return estatusCasillaEvaluada;
+              }
+
+          }
+          estatusCasillaEvaluada.NohayUnaFicha = true;
+          estatusCasillaEvaluada.colorDeLaFicha = Colores.White;
+
+          return estatusCasillaEvaluada;
+      }
+
     /**
     * @brief Determina si la posicion esta en los limites permitidos
     *
