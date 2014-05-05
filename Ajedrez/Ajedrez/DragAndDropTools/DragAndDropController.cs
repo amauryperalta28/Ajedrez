@@ -472,9 +472,35 @@ namespace Ajedrez.DragAndDropTools
             
            
                 //Se verifica si es el turno del jugador rojo para jugar
-                
+                    
                     itemToSelect.IsSelected = true;
+
+                    Vector2 posDestino = CurrentMousePosition;
+
+                    // Se crea un tablero para saber la posicion de la casilla en la que se dio click
+                    Tablero t1 = new Tablero(Game.Content, _spriteBatch, Game);
+                    Vector2 posFichaSeleccionada = itemToSelect.Position;
+
+                    for (int y = 0; y < t1.Casillas.GetLength(0); y++)
+                    {
+                        for (int x = 0; x < t1.Casillas.GetLength(1); x++)
+                        {
+                            Casilla casillaEvaluada = t1.Casillas[x, y];
+
+                            /*  Si el puntero esta dentro de una casilla, ponle la posicion de esa casilla
+                             *  al objeto seleccionado.  */
+                            if ((posDestino.X > casillaEvaluada.Posicion.X && posDestino.X <= casillaEvaluada.Posicion.X + 80) && (posDestino.Y > casillaEvaluada.Posicion.Y && posDestino.Y <= casillaEvaluada.Posicion.Y + 80))
+                            {
+                                // Se insertan las posibles posiciones para mover y capturar fichas.
+                                itemToSelect.canMove(posFichaSeleccionada, casillaEvaluada.Posicion, _items);
+                                
+
+                            }
+                        }
+
+                    }
                     _selectedItems.Add(itemToSelect);
+                    
                     
                 
                 
@@ -517,6 +543,7 @@ namespace Ajedrez.DragAndDropTools
                             capturarFicha(casillaEvaluada.Posicion);
                             itemToDeselect.Position = casillaEvaluada.Posicion;
                             canNotMove = false;
+                            fichaSeleccionada.removeJugadasParaComerFicha();
  
                         
                         }

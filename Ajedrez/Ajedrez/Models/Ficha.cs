@@ -32,7 +32,19 @@ namespace Ajedrez.Models
         *  
         *  @return      true si puede capturar, false de lo contrario
         */
-       public abstract bool canEat(List<Ficha> FichasTablero);
+      public bool canEat(List<Ficha> FichasTablero)
+      {
+          bool comer= false;
+
+          if (posiblesMovidasComer.Count > 1)
+              comer = true;
+
+          //Se eliminan las posiciones de las fichas que se pueden comer
+         // removeJugadasParaComerFicha();
+          
+          return comer;
+      
+      }
       
 
       /** @brief Determina si una posicion indicada, se encuentra dentro de las posiciones validas para comer una ficha 

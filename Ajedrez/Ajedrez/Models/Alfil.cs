@@ -74,7 +74,7 @@ namespace Ajedrez.Models
                     else if ( (estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                     {
                         
-                        addJugadaMovimiento(pos);
+                        addJugadaParaComerFicha(pos);
                         posicionesValidas1.Add(pos);
                         break;
                     
@@ -112,7 +112,7 @@ namespace Ajedrez.Models
                     else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                     {
 
-                        addJugadaMovimiento(pos);
+                        addJugadaParaComerFicha(pos);
                         posicionesValidas1.Add(pos);
                         break;
 
@@ -149,7 +149,7 @@ namespace Ajedrez.Models
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                 {
 
-                    addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
                     posicionesValidas1.Add(pos);
                     break;
 
@@ -184,7 +184,7 @@ namespace Ajedrez.Models
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                 {
 
-                    addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
                     posicionesValidas1.Add(pos);
                     break;
 
@@ -217,32 +217,7 @@ namespace Ajedrez.Models
 
         }
 
-
-       /** @brief Determina si la ficha puede capturar otra ficha
-        *         Se insertan las posiciones validas para capturar 
-        *         en la lista de posiblesMovidascomer
-        *  @param[in]   FichasTablero       Esta es la lista de ficha del tablero
-        *  
-        *  @return      1 si puede capturar, 0 de lo contrario
-        */
-        public override bool canEat(List<Ficha> FichasTablero)
-        {
-            // Se elimina el contenido de la lista
-            removeJugadasParaComerFicha();
-            //Se recorren las fichas del tablero
-
-            foreach (var fichaAEvaluar in FichasTablero)
-            {
-                // Se determina si la ficha a evaluar puede ser capturada
-                if (esJugadaMovimiento(fichaAEvaluar.Position))
-                {
-                    addJugadaParaComerFicha(fichaAEvaluar.Position);
-                
-                }
-            }
-
-            return  posiblesMovidasComer.Count> 1? true: false;
-        }
+        
 
     }
 }

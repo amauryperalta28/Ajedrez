@@ -43,45 +43,146 @@ namespace Ajedrez.Models
         {
             //Variables en la que se insertan las posiciones validas para moverse
             List<Vector2> posicionesValidas1 = new List<Vector2>();
-            
+            ;
 
+            #region Posiciones Horizontales
             // Se insertan todas las posiciones horizontales en las que se puede jugar
-            for (int x = 70; x <= 630; x= x+80)
+            for (int x = Convert.ToInt32(posicionInicial.X); x <= 630; x = x + 80)
             {
                 // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
 
                 if (estaDentroDelTablero(x, posicionInicial.Y) == 1 && posicionInicial.X != x)
                 {
-                    //posicionesValidas[IndexValidmove].X = x;
-                    //posicionesValidas[IndexValidmove].Y = posicionInicial.Y;
+                   
+                    Vector2 pos = new Vector2(x, posicionInicial.Y);
+                    // Se verifica si en la posicion hay una ficha
+                    if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                    {
+                        addJugadaMovimiento(pos);
+                        posicionesValidas1.Add(pos);
+                    }
+                    ///Si hay una ficha en la casilla de color diferente, insertalo en las posiciones para capturar fichas
+                    else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                    {
+                                             
+                        addJugadaParaComerFicha(pos);
+                        posicionesValidas1.Add(pos);
+                        break;
+
+                    }
+                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                    {
+                        break;
+
+                    }
+                   
+                }
+
+            }
+
+            for (int x = Convert.ToInt32(posicionInicial.X); x >= 70; x = x - 80)
+            {
+                // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
+
+                if (estaDentroDelTablero(x, posicionInicial.Y) == 1 && posicionInicial.X != x)
+                {
 
                     Vector2 pos = new Vector2(x, posicionInicial.Y);
-                    posicionesValidas1.Add(pos);
-                    
+                    // Se verifica si en la posicion hay una ficha
+                    if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                    {
+                        addJugadaMovimiento(pos);
+                        posicionesValidas1.Add(pos);
+                    }
+                    ///Si hay una ficha en la casilla de color diferente, insertalo en las posiciones para capturar fichas
+                    else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                    {
+
+                        addJugadaParaComerFicha(pos);
+                        posicionesValidas1.Add(pos);
+                        break;
+
+                    }
+                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                    {
+                        break;
+
+                    }
 
                 }
 
             }
+            #endregion
             // Se insertan todas las posiciones verticales en las que se puede jugar
+            #region Posiciones Verticales
 
-            for (int y = 20; y <= 580; y= y+80)
+            for (int y = Convert.ToInt32(posicionInicial.Y); y >= 20; y = y - 80)
+            {
+                // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
+
+                if (estaDentroDelTablero(posicionInicial.X, y) == 1 && posicionInicial.Y != y)
+                {
+
+                    Vector2 pos = new Vector2(posicionInicial.X, y);
+                    // Se verifica si en la posicion hay un ficha de color distinto
+                    if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                    {
+                        addJugadaMovimiento(pos);
+                        posicionesValidas1.Add(pos);
+                    }
+                    ///Si hay una ficha en la casilla de color diferente, insertalo en las posiciones para capturar fichas
+                    else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                    {
+
+                        addJugadaParaComerFicha(pos);
+                        posicionesValidas1.Add(pos);
+                        break;
+
+                    }
+                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                    {
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            for (int y = Convert.ToInt32(posicionInicial.Y); y <= 580; y = y + 80)
             {
                 // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
                 
                 if (estaDentroDelTablero(posicionInicial.X, y) == 1 &&  posicionInicial.Y != y)
                 {
-                   // posicionesValidas[IndexValidmove].X = posicionInicial.X;
-                    //posicionesValidas[IndexValidmove].Y = y;
-
+                   
                     Vector2 pos = new Vector2(posicionInicial.X, y);
-                    posicionesValidas1.Add(pos);
+                    // Se verifica si en la posicion hay un ficha de color distinto
+                    if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                    {
+                        addJugadaMovimiento(pos);
+                        posicionesValidas1.Add(pos);
+                    }
+                    ///Si hay una ficha en la casilla de color diferente, insertalo en las posiciones para capturar fichas
+                    else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                    {
 
-                    
+                        addJugadaParaComerFicha(pos);
+                        posicionesValidas1.Add(pos);
+                        break;
+
+                    }
+                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                    {
+                        break;
+
+                    }
 
                 }
-            
+
             }
-            
+
+            #endregion
             // Se verifica si la posicion a evaluar esta dentro de las posiciones validas
             for (int i = 0; i < posicionesValidas1.Count; i++)
             {
@@ -97,16 +198,6 @@ namespace Ajedrez.Models
 
         }
 
-        /** @brief Determina si la ficha puede capturar otra ficha
-        *         Se insertan las posiciones validas para capturar 
-        *         en la lista de posiblesMovidascomer
-        *  @param[in]   FichasTablero       Esta es la lista de ficha del tablero
-        *  
-        *  @return      1 si puede capturar, 0 de lo contrario
-        */
-        public override bool canEat(List<Ficha> FichasTablero)
-        {
-            return true;
-        }
+        
     }
 }

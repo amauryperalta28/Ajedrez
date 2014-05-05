@@ -50,67 +50,201 @@ namespace Ajedrez.Models
             // Se insertan las posiciones superiores horizontales validas
             if (estaDentroDelTablero(posicionInicial.X + (80*2), posicionInicial.Y - 80) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X + (80*2);
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y - 80;
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X + (80 * 2), posicionInicial.Y - 80);
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+
+                    
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+
+
+                }
+                
 
             }
 
             if (estaDentroDelTablero(posicionInicial.X - (80 * 2), posicionInicial.Y - 80) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X - (80 * 2);
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y - 80;
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X - (80 * 2), posicionInicial.Y - 80);
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+
+                    //addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+
+
+                }
+                
 
             }
 
             //Se insertan las posiciones inferiores horizontales validas
             if (estaDentroDelTablero(posicionInicial.X + (80 * 2), posicionInicial.Y + 80) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X + (80 * 2);
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y + 80;
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X + (80 * 2), posicionInicial.Y + 80);
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+
+                    //addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+
+
+                }
+                
 
             }
             if (estaDentroDelTablero(posicionInicial.X - (80 * 2), posicionInicial.Y + 80) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X - (80 * 2);
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y + 80;
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X - (80 * 2), posicionInicial.Y + 80);
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+
+                    //addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+
+
+                }
+                
 
             }
 
             //Se insertan las posiciones superiores verticales validas 
             if (estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y - (80 * 2)) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X + 80;
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y - (80 * 2);
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X + 80, posicionInicial.Y - (80 * 2));
+                posicionesValidas[IndexValidmove] = pos;
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+
+                   // addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+
+
+                }
+                
 
             }
 
             if (estaDentroDelTablero(posicionInicial.X - 80, posicionInicial.Y - (80 * 2)) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X - 80;
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y - (80 * 2);
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X - 80, posicionInicial.Y - (80 * 2));
+                posicionesValidas[IndexValidmove] = pos;
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+
+                   // addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+
+
+                }
+                
+                                
 
             }
 
             //Se insertan las posiciones inferiores verticales validas 
             if (estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y + (80 * 2)) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X + 80;
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y + (80 * 2);
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X + 80, posicionInicial.Y + (80 * 2));
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+
+                    //addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+
+
+                }
+                
 
             }
 
             if (estaDentroDelTablero(posicionInicial.X - 80, posicionInicial.Y + (80 * 2)) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X - 80;
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y + (80 * 2);
-                IndexValidmove++;
+                Vector2 pos = new Vector2(posicionInicial.X - 80, posicionInicial.Y + (80 * 2));
+                // Se verifica si en la posicion hay un ficha de color distinto
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color)== false)
+                {
+
+                   // addJugadaMovimiento(pos);
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+                    
+
+                }
+                
+                
+               
 
             }
 
@@ -129,16 +263,6 @@ namespace Ajedrez.Models
 
         }
 
-        /** @brief Determina si la ficha puede capturar otra ficha
-         *         Se insertan las posiciones validas para capturar 
-         *         en la lista de posiblesMovidascomer
-         *  @param[in]   FichasTablero       Esta es la lista de ficha del tablero
-         *  
-         *  @return      1 si puede capturar, 0 de lo contrario
-         */
-        public override bool canEat(List<Ficha> FichasTablero)
-        {
-            return true;
-        }
+        
     }
 }

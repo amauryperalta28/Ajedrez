@@ -51,38 +51,94 @@ namespace Ajedrez.Models
             
             if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y - 80) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X;
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y - 80;
+                Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y - 80);
+                posicionesValidas[IndexValidmove] = pos;
                 IndexValidmove++;
 
                 if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y - 160) == 1 && posicionInicial.Y == 500)
                 {
-                    posicionesValidas[IndexValidmove].X = posicionInicial.X;
-                    posicionesValidas[IndexValidmove].Y = posicionInicial.Y - 160;
+                    Vector2 pos1 = new Vector2(posicionInicial.X, posicionInicial.Y - 160);
+                    posicionesValidas[IndexValidmove] = pos1;
                     IndexValidmove++;
 
                 }
-                
 
             }
-            
-            // Se verifica si el peon es negro
-            else if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 80) == 1)
+            #region Posiciones diagonales superiores
+            if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y - 80) == 1)
             {
-                posicionesValidas[IndexValidmove].X = posicionInicial.X;
-                posicionesValidas[IndexValidmove].Y = posicionInicial.Y + 80;
+                Vector2 pos = new Vector2(posicionInicial.X + 80, posicionInicial.Y - 80);
+                
+                 if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+                     
+                }
+
+            }
+            if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X - 80, posicionInicial.Y - 80) == 1)
+            {
+                Vector2 pos = new Vector2(posicionInicial.X - 80, posicionInicial.Y - 80);
+                
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                {
+                    addJugadaParaComerFicha(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+                    IndexValidmove++;
+                    
+                }
+
+            }
+            #endregion
+
+            // Se verifica si el peon es negro
+             if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 80) == 1)
+            {
+                Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y + 80);
+                posicionesValidas[IndexValidmove] = pos;
                 IndexValidmove++;
 
                 if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 160) == 1 && posicionInicial.Y.Equals(100))
                 {
-                    posicionesValidas[IndexValidmove].X = posicionInicial.X;
-                    posicionesValidas[IndexValidmove].Y = posicionInicial.Y + 160;
+                    Vector2 pos1 = new Vector2(posicionInicial.X, posicionInicial.Y +160);
+                    posicionesValidas[IndexValidmove] = pos1;
                     IndexValidmove++;
 
                 }
 
             }
+             #region Posiciones diagonales inferiores
+             if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y + 80) == 1)
+             {
+                 Vector2 pos = new Vector2(posicionInicial.X + 80, posicionInicial.Y + 80);
+                 
+                 if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                 {
 
+                     addJugadaParaComerFicha(pos);
+                     posicionesValidas[IndexValidmove] = pos;
+                     IndexValidmove++;
+
+                 }
+
+             }
+             if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X - 80, posicionInicial.Y + 80) == 1)
+             {
+                 Vector2 pos = new Vector2(posicionInicial.X - 80, posicionInicial.Y + 80);
+                 
+                 if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                 {
+
+                     addJugadaParaComerFicha(pos);
+                     posicionesValidas[IndexValidmove] = pos;
+                     IndexValidmove++;
+
+                 }
+
+             }
+             #endregion
            
             // Se verifica si la posicion a evaluar esta dentro de las posiciones validas
             for (int i = 0; i < posicionesValidas.Length; i++)
@@ -98,16 +154,6 @@ namespace Ajedrez.Models
 
         }
 
-        /** @brief Determina si la ficha puede capturar otra ficha
-        *         Se insertan las posiciones validas para capturar 
-        *         en la lista de posiblesMovidascomer
-        *  @param[in]   FichasTablero       Esta es la lista de ficha del tablero
-        *  
-        *  @return      1 si puede capturar, 0 de lo contrario
-        */
-        public override bool canEat(List<Ficha> FichasTablero)
-        {
-            return true;
-        }
+        
     }
 }
