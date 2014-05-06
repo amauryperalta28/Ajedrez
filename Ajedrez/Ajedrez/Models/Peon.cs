@@ -64,6 +64,23 @@ namespace Ajedrez.Models
                 }
 
             }
+
+            // Se verifica si el peon es negro
+            if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 80) == 1)
+            {
+                Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y + 80);
+                posicionesValidas[IndexValidmove] = pos;
+                IndexValidmove++;
+
+                if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 160) == 1 && posicionInicial.Y.Equals(100))
+                {
+                    Vector2 pos1 = new Vector2(posicionInicial.X, posicionInicial.Y + 160);
+                    posicionesValidas[IndexValidmove] = pos1;
+                    IndexValidmove++;
+
+                }
+
+            }
             #region Posiciones diagonales superiores
             if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y - 80) == 1)
             {
@@ -93,22 +110,7 @@ namespace Ajedrez.Models
             }
             #endregion
 
-            // Se verifica si el peon es negro
-             if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 80) == 1)
-            {
-                Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y + 80);
-                posicionesValidas[IndexValidmove] = pos;
-                IndexValidmove++;
-
-                if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 160) == 1 && posicionInicial.Y.Equals(100))
-                {
-                    Vector2 pos1 = new Vector2(posicionInicial.X, posicionInicial.Y +160);
-                    posicionesValidas[IndexValidmove] = pos1;
-                    IndexValidmove++;
-
-                }
-
-            }
+           
              #region Posiciones diagonales inferiores
              if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y + 80) == 1)
              {

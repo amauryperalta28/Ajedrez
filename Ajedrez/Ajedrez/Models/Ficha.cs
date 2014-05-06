@@ -163,7 +163,7 @@ namespace Ajedrez.Models
           foreach (var casillaEvaluada in listaFichas)
           {
               // Si hay una ficha en la posicion que estamos evaluando
-              if (posicionCasilla.X == casillaEvaluada.Position.X && posicionCasilla.Y == casillaEvaluada.Position.Y)
+              if (posicionCasilla.X == casillaEvaluada.Position.X && posicionCasilla.Y == casillaEvaluada.Position.Y )
               {
 
                   estatusCasillaEvaluada.NohayUnaFicha = false;

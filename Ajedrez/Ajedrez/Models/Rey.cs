@@ -388,13 +388,21 @@ namespace Ajedrez.Models
        /* @brief Determina si el Rey esta en jaque
         * 
         * @param[in]  posicionAEvaluar          Es la que posicion que se evaluara
+        * @param[in]  listaFichas               Estas son las fichas del tablero
         * 
         * @return       true si esta en jaque, false de lo contrario
         * 
         */
-       public bool inJaque(Vector2 posicionAEvaluar)
+       public bool inJaque(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
        {
+           if(peligroPorPeon(posicionAEvaluar,listaFichas) || peligroPorCaballo(posicionAEvaluar,listaFichas) ||
+              peligroConDiagonales(posicionAEvaluar,listaFichas,"Alfil") ||
+              peligroConVerticalesYHorizontales(posicionAEvaluar, listaFichas, "Torre") || peligroPorReina(posicionAEvaluar, listaFichas) ||
+              peligroPorRey(posicionAEvaluar, listaFichas))
+           {
+               return true;
 
+           }
 
            return false;
        
@@ -523,6 +531,474 @@ namespace Ajedrez.Models
 
        }
 
+       /* @brief Determina si el Rey puede ser capturado por un peon
+        * 
+        * @param[in]  posicionAEvaluar          Es la posicion que se evaluara
+        * @param[in]  listaFichas               Estas son las fichas del tablero
+        * 
+        * @return       true si puede ser capturado, false de lo contrario
+        */
+       public bool peligroPorPeon(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
+       {
+           if (Color.Equals(Colores.White))
+           {
+               if (estaDentroDelTablero(posicionAEvaluar.X + 80, posicionAEvaluar.Y - 80) == 1)
+               {
+                   Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y - 80);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Peon") &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                   {
+                       return true;
+
+                   }
+
+               }
+               if (estaDentroDelTablero(posicionAEvaluar.X - 80, posicionAEvaluar.Y - 80) == 1)
+               {
+                   Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y - 80);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Peon") &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                   {
+                       return true;
+
+                   }
+
+               }
+           }
+
+           else
+           {
+               if (estaDentroDelTablero(posicionAEvaluar.X + 80, posicionAEvaluar.Y + 80) == 1)
+               {
+                   Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y + 80);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Peon") &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                   {
+
+                       return true;
+
+                   }
+
+               }
+               if (estaDentroDelTablero(posicionAEvaluar.X - 80, posicionAEvaluar.Y + 80) == 1)
+               {
+                   Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y + 80);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Peon") &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                   {
+
+                       return true;
+
+                   }
+
+               }
+
+           }
+
+           return false;
+       }
+
+       /* @brief Determina si el Rey puede ser capturado por el otro Rey
+        * 
+        * @param[in]  posicionAEvaluar          Es la posicion que se evaluara
+        * @param[in]  listaFichas               Estas son las fichas del tablero
+        * 
+        * @return       true si puede ser capturado, false de lo contrario
+        */
+       public bool peligroPorRey(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
+       {
+           #region Verificacion posiciones Verticales
+           if (estaDentroDelTablero(posicionAEvaluar.X, posicionAEvaluar.Y - 80) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X, posicionAEvaluar.Y - 80);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+                   return true;
+
+               }
+
+           }
+           if (estaDentroDelTablero(posicionAEvaluar.X, posicionAEvaluar.Y + 80) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X, posicionAEvaluar.Y + 80);
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+                   return true;
+               }
+
+           }
+           #endregion
+
+           #region Verificacion posiciones horizontales
+           if (estaDentroDelTablero(posicionAEvaluar.X - 80, posicionAEvaluar.Y) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+                   return true;
+
+               }
+
+           }
+           if (estaDentroDelTablero(posicionAEvaluar.X + 80, posicionAEvaluar.Y) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+
+                   return true;
+
+               }
+
+           }
+           #endregion
+
+           # region Verificacion Posiciones diagonales superiores
+           if (estaDentroDelTablero(posicionAEvaluar.X + 80, posicionAEvaluar.Y - 80) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y - 80);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+
+                   return true;
+               }
+
+           }
+           if (estaDentroDelTablero(posicionAEvaluar.X - 80, posicionAEvaluar.Y - 80) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y - 80);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+                   return true;
+               }
+
+           }
+           #endregion
+
+           #region Verificacion Posiciones diagonales inferiores
+           if (estaDentroDelTablero(posicionAEvaluar.X + 80, posicionAEvaluar.Y + 80) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y + 80);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+                   return true;
+
+               }
+
+           }
+           if (estaDentroDelTablero(posicionAEvaluar.X - 80, posicionAEvaluar.Y + 80) == 1)
+           {
+               Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y + 80);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               {
+                   return true;
+
+               }
+
+           }
+           #endregion
+
+
+
+           return false;
+
+       }
+
+       /* @brief Determina si el Rey puede ser capturado por una torre
+        * 
+        * @param[in]  posicionAEvaluar          Es la posicion que se evaluara
+        * @param[in]  listaFichas               Estas son las fichas del tablero
+        * 
+        * @return       true si puede ser capturado, false de lo contrario
+        */
+       public bool peligroConVerticalesYHorizontales(Vector2 posicionAEvaluar, List<Ficha> listaFichas, string tipoFicha)
+       {
+           #region Posiciones Horizontales
+           // Se insertan todas las posiciones horizontales en las que se puede jugar
+           for (int x = Convert.ToInt32(posicionAEvaluar.X); x <= 630; x = x + 80)
+           {
+               // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
+
+               if (estaDentroDelTablero(x, posicionAEvaluar.Y) == 1 && posicionAEvaluar.X != x)
+               {
+
+                   Vector2 pos = new Vector2(x, posicionAEvaluar.Y);
+                   // Se verifica si en la posicion hay una ficha
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                   {
+
+                       return true;
+
+
+                   }
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false )
+                   {
+                       return false;
+
+                   }
+
+               }
+
+           }
+
+           for (int x = Convert.ToInt32(posicionAEvaluar.X); x >= 70; x = x - 80)
+           {
+               // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
+
+               if (estaDentroDelTablero(x, posicionAEvaluar.Y) == 1 && posicionAEvaluar.X != x)
+               {
+
+                   Vector2 pos = new Vector2(x, posicionAEvaluar.Y);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                   {
+
+                       return true;
+
+                   }
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false )
+                   {
+                       return false;
+
+                   }
+
+               }
+
+           }
+           #endregion
+
+           #region Posiciones Verticales
+
+           for (int y = Convert.ToInt32(posicionAEvaluar.Y); y >= 20; y = y - 80)
+           {
+               // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
+
+               if (estaDentroDelTablero(posicionAEvaluar.X, y) == 1 && posicionAEvaluar.Y != y)
+               {
+
+                   Vector2 pos = new Vector2(posicionAEvaluar.X, y);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                   {
+
+                       return true;
+
+                   }
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false)
+                   {
+                       return false;
+
+                   }
+
+               }
+
+           }
+
+           for (int y = Convert.ToInt32(posicionAEvaluar.Y); y <= 580; y = y + 80)
+           {
+               // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
+
+               if (estaDentroDelTablero(posicionAEvaluar.X, y) == 1 && posicionAEvaluar.Y != y)
+               {
+
+                   Vector2 pos = new Vector2(posicionAEvaluar.X, y);
+                   // Se verifica si en la posicion hay un ficha de color distinto
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                   {
+
+                       return true;
+
+                   }
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false )
+                   {
+                       return false;
+
+                   }
+
+               }
+
+           }
+
+           #endregion
+
+           return false;
+       }
+
+       /* @brief Determina si el Rey puede ser capturado por un alfil
+        * 
+        * @param[in]  posicionAEvaluar          Es la posicion que se evaluara
+        * @param[in]  listaFichas               Estas son las fichas del tablero
+        * 
+        * @return       true si puede ser capturado, false de lo contrario
+        */
+       public bool peligroConDiagonales(Vector2 posicionAEvaluar, List<Ficha> listaFichas, string tipoFicha)
+       {
+           int x, y;
+
+           x = Convert.ToInt32(posicionAEvaluar.X) + 80;
+           y = Convert.ToInt32(posicionAEvaluar.Y) - 80;
+           #region Posiciones diagonales superiores derechas
+
+           
+           while (x <= 630 && y >= 20)
+           {
+               if (estaDentroDelTablero(x, y) == 1)
+               {
+                   Vector2 pos = new Vector2(x, y);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                   {
+                       return true;
+
+                   }
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
+                   {
+                       break;
+
+                   }
+
+               }
+
+               x += 80;
+               y -= 80;
+
+           }
+           #endregion
+           // Se insertan las posiciones diagonales superiores izquierdas validas
+           x = Convert.ToInt32(posicionAEvaluar.X) - 80;
+           y = Convert.ToInt32(posicionAEvaluar.Y) - 80;
+
+           #region Posiciones diagonales superiores izquierdas
+           while (x >= 70 && y >= 20)
+           {
+               if (estaDentroDelTablero(x, y) == 1)
+               {
+                   Vector2 pos = new Vector2(x, y);
+
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                       estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+                   {
+
+                       return true;
+
+                   }
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
+                   {
+                       break;
+
+                   }
+
+
+               }
+
+               x -= 80;
+               y -= 80;
+
+           }
+
+           #endregion
+
+           x = Convert.ToInt32(posicionAEvaluar.X) + 80;
+           y = Convert.ToInt32(posicionAEvaluar.Y) + 80;
+
+           #region posiciones diagonales inferiores derechas
+           while (x <= 630 && y <= 580)
+           {
+               Vector2 pos = new Vector2(x, y);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
+               {
+
+                   return true;
+
+               }
+               else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
+               {
+                   break;
+
+               }
+               
+
+
+               x += 80;
+               y += 80;
+
+           }
+           #endregion
+           // Se insertan las posiciones diagonales inferiores izquierdas validas
+           x = Convert.ToInt32(posicionAEvaluar.X) - 80;
+           y = Convert.ToInt32(posicionAEvaluar.Y) + 80;
+
+           #region Posiciones diagonales inferiores izquierdas
+           while (x >= 70 && y <= 580)
+           {
+               Vector2 pos = new Vector2(x, y);
+
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && (estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha != Color))
+               {
+
+                   return true;
+
+               }
+               else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
+               {
+                   break;
+
+               }
+
+
+               x -= 80;
+               y += 80;
+
+           }
+           #endregion
+
+
+           return false;
+
+       }
+
+       /* @brief Determina si el Rey puede ser capturado por una reina
+        * 
+        * @param[in]  posicionAEvaluar          Es la posicion que se evaluara
+        * @param[in]  listaFichas               Estas son las fichas del tablero
+        * 
+        * @return       true si puede ser capturado, false de lo contrario
+        */
+       public bool peligroPorReina(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
+       { 
+           if( peligroConDiagonales(posicionAEvaluar,listaFichas,"Reina") == true )
+           {
+               return true;
+           }
+
+           if(peligroConVerticalesYHorizontales(posicionAEvaluar,listaFichas,"Reina") == true)
+           {
+               return true;
+           
+           }
+
+           return false;
+       }
 
     }
 }

@@ -58,6 +58,7 @@ namespace Ajedrez.Models
             // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
             #region insercion de movimientos validos
             // Se insertan las posiciones diagonales superiores derechas validas
+            #region Posiciones diagonales superiores derechas
             while (x <= 630 && y >= 20)
             {
                 if (estaDentroDelTablero(x, y) == 1)
@@ -79,7 +80,7 @@ namespace Ajedrez.Models
                         break;
                     
                     }
-                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
                     {
                         break;
 
@@ -91,11 +92,12 @@ namespace Ajedrez.Models
                 y -= 80;
 
             }
-            
+            #endregion
             // Se insertan las posiciones diagonales superiores izquierdas validas
             x = Convert.ToInt32(posicionInicial.X) - 80;
             y = Convert.ToInt32(posicionInicial.Y) - 80;
 
+            #region Posiciones diagonales superiores izquierdas
             while (x >= 70 && y >= 20)
             {
                 if (estaDentroDelTablero(x, y) == 1)
@@ -117,7 +119,7 @@ namespace Ajedrez.Models
                         break;
 
                     }
-                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
                     {
                         break;
 
@@ -131,10 +133,11 @@ namespace Ajedrez.Models
 
             }
 
-
+            #endregion
             x = Convert.ToInt32(posicionInicial.X) + 80;
             y = Convert.ToInt32(posicionInicial.Y) + 80;
 
+            #region posiciones diagonales inferiores derechas
             while (x <=630 && y <= 580)
             {
                 Vector2 pos = new Vector2(x, y);
@@ -154,7 +157,7 @@ namespace Ajedrez.Models
                     break;
 
                 }
-                else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
                 {
                     break;
 
@@ -165,11 +168,12 @@ namespace Ajedrez.Models
                 y += 80;
 
             }
-           
+            #endregion
             // Se insertan las posiciones diagonales inferiores izquierdas validas
             x = Convert.ToInt32(posicionInicial.X) - 80;
             y = Convert.ToInt32(posicionInicial.Y) + 80;
 
+            #region Posiciones diagonales inferiores izquierdas
             while (x >= 70 && y <= 580)
             {
                 Vector2 pos = new Vector2(x, y);
@@ -189,7 +193,7 @@ namespace Ajedrez.Models
                     break;
 
                 }
-                else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false && estatusCasilla(pos, listaFichas).colorDeLaFicha == Color)
+                else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false  )
                 {
                     break;
 
@@ -200,7 +204,8 @@ namespace Ajedrez.Models
                 y += 80;
 
             }
-           
+            #endregion
+
             #endregion
             // Se verifica si la posicion a evaluar esta dentro de las posiciones validas
             for (int i = 0; i < posicionesValidas1.Count; i++)

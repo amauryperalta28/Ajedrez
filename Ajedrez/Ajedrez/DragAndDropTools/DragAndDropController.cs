@@ -490,7 +490,7 @@ namespace Ajedrez.DragAndDropTools
 
             if (itemToDeselect is Rey)
             {
-                if (((Rey)itemToDeselect).peligroPorCaballo(itemToDeselect.Position, _items))
+                if (((Rey)itemToDeselect).inJaque(itemToDeselect.Position, _items))
                 {
                     
                     this.Game.Exit();
