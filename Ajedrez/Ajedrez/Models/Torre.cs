@@ -198,6 +198,33 @@ namespace Ajedrez.Models
 
         }
 
+         /* @brief Mueve a la torre de forma que realice el enroque corto
+         * 
+         * @return       no retorna nada
+         * 
+         */
+         public void hazEnroqueCorto()
+         {
+             Vector2 nuevaPosicion = new Vector2(posicion.X - 160, posicion.Y);
+
+             base.Position = nuevaPosicion;
+
+
+         }
+         /* @brief Mueve a la torre de forma que realice el enroque largo
+         * 
+         * @return       no retorna nada
+         * 
+         */
+         public void hazEnroqueLargo()
+         {
+             Vector2 nuevaPosicion = new Vector2(posicion.X - 160, posicion.Y);
+
+             base.Position = nuevaPosicion;
+
+
+         }
+
         
     }
 }

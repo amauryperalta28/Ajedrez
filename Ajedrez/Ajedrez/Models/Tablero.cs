@@ -71,7 +71,7 @@ namespace Ajedrez
        protected void setColorCasillas(ContentManager content)
        {
            //Primero se colorean las filas pares
-           Colores colorEnUso = Colores.Black;
+           Colores colorEnUso = Colores.White;
 
            for(int j=0; j < casillas.GetLength(0); j++)
            {

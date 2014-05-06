@@ -9,7 +9,7 @@ namespace DragAndDrop
 
         #region IDragAndDropItem implementation
 
-        public Vector2 Position { get; set; }
+        public virtual Vector2 Position { get; set; }
         public bool IsSelected { get; set; }
         public bool IsMouseOver { get; set; }
         public bool Contains(Vector2 pointToCheck)

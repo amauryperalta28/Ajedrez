@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Ajedrez.Models;
 using DragAndDrop;
+using System;
 
 namespace Ajedrez.Models
 {
@@ -12,9 +13,11 @@ namespace Ajedrez.Models
     {
 
            
-      private Colores color;       
-      protected Vector2 posicion;       
+      private Colores color;
+      private bool seMovio = false;
+      protected Vector2 posicion;
 
+      public override Vector2 Position { get { return base.Position; } set { base.Position = value; posicion = value; } }  
       /* Atributo para almacenadar la posiciones finales despues de comer una ficha*/
       protected List<Vector2> posiblesMovidasComer = new List<Vector2>();
 
@@ -24,6 +27,8 @@ namespace Ajedrez.Models
 
       /*Propiedad del atributo color*/
       public Colores Color { get { return this.color; } set { color = value; } }
+      public bool SeMovio { get { return this.seMovio; } set { this.seMovio = value; } }
+      
 
       /** @brief Determina si la ficha puede capturar otra ficha
         *         Se insertan las posiciones validas para capturar 
@@ -163,6 +168,8 @@ namespace Ajedrez.Models
 
                   estatusCasillaEvaluada.NohayUnaFicha = false;
                   estatusCasillaEvaluada.colorDeLaFicha = casillaEvaluada.Color;
+                  estatusCasillaEvaluada.tipo = casillaEvaluada.GetType().Name;
+
 
                   return estatusCasillaEvaluada;
               }
@@ -170,6 +177,7 @@ namespace Ajedrez.Models
           }
           estatusCasillaEvaluada.NohayUnaFicha = true;
           estatusCasillaEvaluada.colorDeLaFicha = Colores.White;
+          estatusCasillaEvaluada.tipo = "";
 
           return estatusCasillaEvaluada;
       }

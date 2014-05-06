@@ -16,6 +16,7 @@ namespace Ajedrez.Models
     {
        public bool NohayUnaFicha;
        public Colores colorDeLaFicha;
+       public String tipo;
     
     }
     
