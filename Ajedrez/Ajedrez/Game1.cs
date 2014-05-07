@@ -132,6 +132,8 @@ namespace Ajedrez
             //get the current state of the mouse (position, buttons, etc.)
             _currentMouse = Mouse.GetState();
 
+            
+
             //remember the mouseposition for use in this Update and subsequent Draw
             _currentMousePosition = new Vector2(_currentMouse.X, _currentMouse.Y);
 

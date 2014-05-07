@@ -70,7 +70,6 @@ namespace Ajedrez.Models
                     {
 
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
 
                     }
@@ -108,7 +107,6 @@ namespace Ajedrez.Models
                     {
 
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
 
                     }
@@ -145,7 +143,6 @@ namespace Ajedrez.Models
                 {
 
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas1.Add(pos);
                     break;
 
                 }
@@ -180,7 +177,6 @@ namespace Ajedrez.Models
                 {
 
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas1.Add(pos);
                     break;
 
                 }
@@ -221,7 +217,6 @@ namespace Ajedrez.Models
                     {
 
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
 
                     }
@@ -254,7 +249,6 @@ namespace Ajedrez.Models
                     {
 
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
 
                     }
@@ -290,7 +284,6 @@ namespace Ajedrez.Models
                     {
 
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
 
                     }
@@ -323,7 +316,6 @@ namespace Ajedrez.Models
                     {
 
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
 
                     }

@@ -53,44 +53,35 @@ namespace Ajedrez.Models
             if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y - 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y - 80);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true) && inJaque(pos,listaFichas)== false)
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false)  && inJaque(pos,listaFichas)== false &&
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
                 }
 
             }
             if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y + 80);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true ) && inJaque(pos,listaFichas)== false )
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && inJaque(pos, listaFichas) == false && 
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
                 }
 
             }
@@ -100,44 +91,34 @@ namespace Ajedrez.Models
             if (estaDentroDelTablero(posicionInicial.X-80, posicionInicial.Y) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X-80, posicionInicial.Y);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true) && inJaque(pos, listaFichas) == false)
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && inJaque(pos, listaFichas) == false && 
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
                 }
 
             }
             if (estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X+80, posicionInicial.Y);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true) && inJaque(pos, listaFichas) == false)
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && inJaque(pos, listaFichas) == false && 
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
                 }
 
             }
@@ -147,43 +128,35 @@ namespace Ajedrez.Models
             if (estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y - 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X+80, posicionInicial.Y - 80);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true) && inJaque(pos, listaFichas) == false)
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && inJaque(pos, listaFichas) == false && 
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
+                    
                 }
 
             }
             if (estaDentroDelTablero(posicionInicial.X - 80, posicionInicial.Y - 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X-80, posicionInicial.Y - 80);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true) && inJaque(pos, listaFichas) == false)
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && inJaque(pos, listaFichas) == false && 
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
 
                 }
 
@@ -194,44 +167,35 @@ namespace Ajedrez.Models
             if (estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y + 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X+80, posicionInicial.Y + 80);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true) && inJaque(pos, listaFichas) == false)
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && inJaque(pos, listaFichas) == false && 
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
+                   
                 }
 
             }
             if (estaDentroDelTablero(posicionInicial.X - 80, posicionInicial.Y + 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X-80, posicionInicial.Y + 80);
-                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true) && inJaque(pos, listaFichas) == false)
                 {
                     addJugadaMovimiento(pos);
                     posicionesValidas[IndexValidmove] = pos;
 
                     IndexValidmove++;
                 }
-                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
+                else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && inJaque(pos, listaFichas) == false && 
+                    estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
                 }
 
             }
@@ -396,10 +360,16 @@ namespace Ajedrez.Models
        public bool inJaque(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
        {
            if(peligroPorPeon(posicionAEvaluar,listaFichas) || peligroPorCaballo(posicionAEvaluar,listaFichas) ||
-              peligroConDiagonales(posicionAEvaluar,listaFichas,"Alfil") ||
-              peligroConVerticalesYHorizontales(posicionAEvaluar, listaFichas, "Torre") || peligroPorReina(posicionAEvaluar, listaFichas) ||
+              peligroConDiagonales(posicionAEvaluar,listaFichas) ||
+              peligroConVerticalesYHorizontales(posicionAEvaluar, listaFichas) ||
               peligroPorRey(posicionAEvaluar, listaFichas))
            {
+               bool p1 = peligroPorPeon(posicionAEvaluar, listaFichas);
+               bool p2 = peligroPorCaballo(posicionAEvaluar, listaFichas);
+               bool p3 = peligroConDiagonales(posicionAEvaluar, listaFichas);
+               bool p4 = peligroConVerticalesYHorizontales(posicionAEvaluar, listaFichas);
+               bool p5 = peligroPorRey(posicionAEvaluar, listaFichas);
+               
                return true;
 
            }
@@ -616,7 +586,8 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X, posicionAEvaluar.Y - 80);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color)== false)
                {
                    return true;
 
@@ -626,7 +597,8 @@ namespace Ajedrez.Models
            if (estaDentroDelTablero(posicionAEvaluar.X, posicionAEvaluar.Y + 80) == 1)
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X, posicionAEvaluar.Y + 80);
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                {
                    return true;
                }
@@ -639,7 +611,8 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                {
                    return true;
 
@@ -650,7 +623,9 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false
+                   )
                {
 
                    return true;
@@ -665,7 +640,8 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y - 80);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                {
 
                    return true;
@@ -676,7 +652,8 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y - 80);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                {
                    return true;
                }
@@ -689,7 +666,8 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X + 80, posicionAEvaluar.Y + 80);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                {
                    return true;
 
@@ -700,7 +678,8 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(posicionAEvaluar.X - 80, posicionAEvaluar.Y + 80);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") )
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals("Rey") &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                {
                    return true;
 
@@ -722,7 +701,7 @@ namespace Ajedrez.Models
         * 
         * @return       true si puede ser capturado, false de lo contrario
         */
-       public bool peligroConVerticalesYHorizontales(Vector2 posicionAEvaluar, List<Ficha> listaFichas, string tipoFicha)
+       public bool peligroConVerticalesYHorizontales(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
        {
            #region Posiciones Horizontales
            // Se insertan todas las posiciones horizontales en las que se puede jugar
@@ -735,7 +714,9 @@ namespace Ajedrez.Models
 
                    Vector2 pos = new Vector2(x, posicionAEvaluar.Y);
                    // Se verifica si en la posicion hay una ficha
-                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                       (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") || 
+                       estatusCasilla(pos, listaFichas).tipo.Equals("Torre") )&&
                        estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                    {
 
@@ -743,14 +724,16 @@ namespace Ajedrez.Models
 
 
                    }
-                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false )
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false)
                    {
-                       return false;
+                       //return false;
+                       break;
 
                    }
 
                }
 
+               
            }
 
            for (int x = Convert.ToInt32(posicionAEvaluar.X); x >= 70; x = x - 80)
@@ -762,21 +745,24 @@ namespace Ajedrez.Models
 
                    Vector2 pos = new Vector2(x, posicionAEvaluar.Y);
 
-                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                       (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") || 
+                       estatusCasilla(pos, listaFichas).tipo.Equals("Torre")) &&
                        estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                    {
 
                        return true;
 
                    }
-                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false )
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false)
                    {
-                       return false;
+                       break;
+
 
                    }
 
                }
-
+               
            }
            #endregion
 
@@ -791,7 +777,9 @@ namespace Ajedrez.Models
 
                    Vector2 pos = new Vector2(posicionAEvaluar.X, y);
 
-                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                       (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") ||
+                       estatusCasilla(pos, listaFichas).tipo.Equals("Torre")) &&
                        estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                    {
 
@@ -800,8 +788,8 @@ namespace Ajedrez.Models
                    }
                    else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false)
                    {
-                       return false;
 
+                       break;
                    }
 
                }
@@ -818,16 +806,18 @@ namespace Ajedrez.Models
                    Vector2 pos = new Vector2(posicionAEvaluar.X, y);
                    // Se verifica si en la posicion hay un ficha de color distinto
 
-                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                       (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") ||
+                       estatusCasilla(pos, listaFichas).tipo.Equals("Torre") )&&
                        estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                    {
 
                        return true;
 
                    }
-                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false )
+                   else if (estatusCasilla(pos, listaFichas).NohayUnaFicha == false)
                    {
-                       return false;
+                       break;
 
                    }
 
@@ -840,14 +830,14 @@ namespace Ajedrez.Models
            return false;
        }
 
-       /* @brief Determina si el Rey puede ser capturado por un alfil
+       /** @brief Determina si el Rey puede ser capturado por un alfil
         * 
         * @param[in]  posicionAEvaluar          Es la posicion que se evaluara
         * @param[in]  listaFichas               Estas son las fichas del tablero
         * 
         * @return       true si puede ser capturado, false de lo contrario
         */
-       public bool peligroConDiagonales(Vector2 posicionAEvaluar, List<Ficha> listaFichas, string tipoFicha)
+       public bool peligroConDiagonales(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
        {
            int x, y;
 
@@ -862,7 +852,9 @@ namespace Ajedrez.Models
                {
                    Vector2 pos = new Vector2(x, y);
 
-                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                       (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") ||
+                       estatusCasilla(pos, listaFichas).tipo.Equals("Alfil")) &&
                        estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                    {
                        return true;
@@ -892,7 +884,9 @@ namespace Ajedrez.Models
                {
                    Vector2 pos = new Vector2(x, y);
 
-                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+                   if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                       (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") ||
+                       estatusCasilla(pos, listaFichas).tipo.Equals("Alfil")) &&
                        estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                    {
 
@@ -923,7 +917,9 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(x, y);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                   (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") ||
+                   estatusCasilla(pos, listaFichas).tipo.Equals("Alfil")) &&
                    estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                {
 
@@ -952,8 +948,10 @@ namespace Ajedrez.Models
            {
                Vector2 pos = new Vector2(x, y);
 
-               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && (estatusCasilla(pos, listaFichas).tipo.Equals(tipoFicha) &&
-                   estatusCasilla(pos, listaFichas).colorDeLaFicha != Color))
+               if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && 
+                   (estatusCasilla(pos, listaFichas).tipo.Equals("Reina") ||
+                   estatusCasilla(pos, listaFichas).tipo.Equals("Alfil")) &&
+                   estatusCasilla(pos, listaFichas).colorDeLaFicha != Color)
                {
 
                    return true;
@@ -977,7 +975,7 @@ namespace Ajedrez.Models
 
        }
 
-       /* @brief Determina si el Rey puede ser capturado por una reina
+       /** @brief Determina si el Rey puede ser capturado por una reina
         * 
         * @param[in]  posicionAEvaluar          Es la posicion que se evaluara
         * @param[in]  listaFichas               Estas son las fichas del tablero
@@ -986,12 +984,12 @@ namespace Ajedrez.Models
         */
        public bool peligroPorReina(Vector2 posicionAEvaluar, List<Ficha> listaFichas)
        { 
-           if( peligroConDiagonales(posicionAEvaluar,listaFichas,"Reina") == true )
+           if( peligroConDiagonales(posicionAEvaluar,listaFichas) == true )
            {
                return true;
            }
 
-           if(peligroConVerticalesYHorizontales(posicionAEvaluar,listaFichas,"Reina") == true)
+           if(peligroConVerticalesYHorizontales(posicionAEvaluar,listaFichas) == true)
            {
                return true;
            

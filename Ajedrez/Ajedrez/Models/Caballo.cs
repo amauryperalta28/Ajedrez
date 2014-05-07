@@ -60,12 +60,7 @@ namespace Ajedrez.Models
                 }
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-                    
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
 
                 }
                 
@@ -84,12 +79,7 @@ namespace Ajedrez.Models
                 }
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-                    //addJugadaMovimiento(pos);
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
 
                 }
                 
@@ -110,10 +100,7 @@ namespace Ajedrez.Models
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
 
-                    //addJugadaMovimiento(pos);
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
 
 
                 }
@@ -133,12 +120,7 @@ namespace Ajedrez.Models
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
 
-                    //addJugadaMovimiento(pos);
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
                 }
                 
 
@@ -158,13 +140,7 @@ namespace Ajedrez.Models
                 }
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
-
-                   // addJugadaMovimiento(pos);
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
-
                 }
                 
 
@@ -184,11 +160,7 @@ namespace Ajedrez.Models
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
 
-                   // addJugadaMovimiento(pos);
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
 
                 }
                 
@@ -210,11 +182,7 @@ namespace Ajedrez.Models
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
 
-                    //addJugadaMovimiento(pos);
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-
 
                 }
                 
@@ -235,12 +203,7 @@ namespace Ajedrez.Models
                 else if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color)== false)
                 {
 
-                   // addJugadaMovimiento(pos);
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
-                    
-
                 }
                 
                 

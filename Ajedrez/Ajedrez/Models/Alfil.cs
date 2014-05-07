@@ -18,13 +18,13 @@ namespace Ajedrez.Models
             if (colorFicha.Equals(Colores.Black))
             {
                 base.Color = Colores.Black;
-                base.Texture = Content.Load<Texture2D>(@"Images/Fichas/AlfilB");// AlfilB
+                base.Texture = Content.Load<Texture2D>(@"Images/Fichas/AlfilB");
             
             }
             else if (colorFicha.Equals(Colores.White))
             {
                 base.Color = Colores.White;
-                base.Texture = Content.Load<Texture2D>(@"Images/Fichas/AlfilW");//AlfilW
+                base.Texture = Content.Load<Texture2D>(@"Images/Fichas/AlfilW");
 
             }
            
@@ -76,7 +76,6 @@ namespace Ajedrez.Models
                     {
                         
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
                     
                     }
@@ -115,7 +114,6 @@ namespace Ajedrez.Models
                     {
 
                         addJugadaParaComerFicha(pos);
-                        posicionesValidas1.Add(pos);
                         break;
 
                     }
@@ -153,7 +151,6 @@ namespace Ajedrez.Models
                 {
 
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas1.Add(pos);
                     break;
 
                 }
@@ -189,7 +186,6 @@ namespace Ajedrez.Models
                 {
 
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas1.Add(pos);
                     break;
 
                 }

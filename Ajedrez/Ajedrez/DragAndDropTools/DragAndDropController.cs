@@ -158,6 +158,30 @@ namespace Ajedrez.DragAndDropTools
          * 
          * @return      no retorna nada
          */
+
+        /**@brief Obtiene una ficha en una posicion indicada
+         * 
+         * @param[in]  posFicha         Esta es la posicion de la ficha que se desea obtener
+         * 
+         * @return     La ficha en la posicion indicada   
+         */
+        public Ficha getFicha(Vector2 posFicha)
+        {
+            Ficha fis=_items.ElementAt(0);
+            for (int i = _items.Count - 1; i >= 0; i--)
+            {
+                Ficha item = _items.ElementAt(i);
+                
+                if (item.Position.Equals(posFicha))
+                {
+                    return item;
+                }
+            }
+
+            
+            return fis;
+ 
+        }
         public void coronarAReina()
         {
                            
@@ -198,31 +222,7 @@ namespace Ajedrez.DragAndDropTools
 
        }
 
-       
-        /** @brief  Determina si un jugador debe comer otra ficha
-         * 
-         * @param[in]  colorJugador        color del jugador
-         * 
-         * @return                  true si debe que comer, false de lo contrario
-         * 
-         */
-    /*    public bool jugadorDebeComer(Colores colorJugador)
-        {
-            //Recorro las fichas que se encuentran en el tablero
-            foreach(Ficha fichaAEvaluar in _items)
-            {
-                //Verifico si es del color del jugador indicado
-                if (fichaAEvaluar.Color.Equals(colorJugador) && fichaPuedeComer(fichaAEvaluar) == true)
-                {
-                    return true;
-                
-                }
-
-            }
-            return false;
-        
-        }*/
-
+      
         /** @brief Se elimina una ficha en una posicion indicada
          * 
          * @param[in] posFichaACapturar            Esta es la posicion de la ficha a capturar
@@ -238,20 +238,44 @@ namespace Ajedrez.DragAndDropTools
           
             for (int i = _items.Count - 1; i >= 0; i--)
             {
-                for (int x = 70; x <= 630; x = x + 80)
-                {
                     Ficha item = _items.ElementAt(i);
                    
                     if (item.Position.Equals(posFichaACapturar) )
                     {
                         Remove(item);
                         return;
-                                             
                     }
+            }
+        }
+        /** @brief Determina si un rey especificado esta en Jaque
+         * 
+         * @param[in]  ColorRey            Este es color de rey a evaluar
+         *  
+         * @return     True si esta jaque, false de lo contrario
+         * 
+         */
+        public bool reyEstaEnJaque(Colores colorRey)
+        {
+            // Se recorre la lista de fichas
+            for (int i = _items.Count - 1; i >= 0; i--)
+            {
 
+                Ficha fichaAEvaluar = _items.ElementAt(i);
+
+                //Si la ficha es el rey del color indicado evaluala
+                if ( fichaAEvaluar is Rey && fichaAEvaluar.Color.Equals(colorRey))
+                {
+                    // Se verifica si el rey esta en jaque
+                    if (((Rey)fichaAEvaluar).inJaque(fichaAEvaluar.Position,_items))
+                        return true;
+                    else
+                        return false;
+                    
                 }
 
             }
+
+            return false;
         }
 
         #endregion
@@ -438,6 +462,7 @@ namespace Ajedrez.DragAndDropTools
         private void DeselectItem(Ficha itemToDeselect)
         {
             itemToDeselect.IsSelected = false;
+            bool accionEjecutada = false;
             bool canNotMove = true;                      
 
             Ficha fichaSeleccionada = ((Ficha)itemToDeselect);
@@ -449,9 +474,9 @@ namespace Ajedrez.DragAndDropTools
             // Se crea un tablero para saber la posicion de la casilla en la que se dio click
             Tablero t1 = new Tablero(Game.Content, _spriteBatch, Game);
 
-            for (int y = 0; y < t1.Casillas.GetLength(0); y++)
+            for (int y = 0; y < t1.Casillas.GetLength(0) && accionEjecutada== false; y++)
             {
-                for (int x = 0; x < t1.Casillas.GetLength(1); x++)
+                for (int x = 0; x < t1.Casillas.GetLength(1) && accionEjecutada== false; x++)
                 {
                     Casilla casillaEvaluada = t1.Casillas[x, y];
 
@@ -459,12 +484,17 @@ namespace Ajedrez.DragAndDropTools
                      *  al objeto seleccionado.  */
                     if ((posDestino.X > casillaEvaluada.Posicion.X && posDestino.X <= casillaEvaluada.Posicion.X + 80) && (posDestino.Y > casillaEvaluada.Posicion.Y && posDestino.Y <= casillaEvaluada.Posicion.Y + 80))
                     {
-                        if (fichaSeleccionada.canMove(posFichaSeleccionada, casillaEvaluada.Posicion, _items) ==1 && estatusCasilla(casillaEvaluada.Posicion).NohayUnaFicha)
+                        if (fichaSeleccionada.canMove(posFichaSeleccionada, casillaEvaluada.Posicion, _items) ==1 /*&& estatusCasilla(casillaEvaluada.Posicion).NohayUnaFicha*/)
                         {
                             itemToDeselect.Position = casillaEvaluada.Posicion;
                             if (itemToDeselect.SeMovio == false) { itemToDeselect.SeMovio = true; }
-
                             canNotMove = false;
+                            accionEjecutada = true;
+
+                            if (accionEjecutada == true)
+                                break;
+                            
+
                         }
                         else if (fichaSeleccionada.canEat(_items) && fichaSeleccionada.esJugadaParaComerFicha(casillaEvaluada.Posicion))
                         {
@@ -474,30 +504,36 @@ namespace Ajedrez.DragAndDropTools
                             if (itemToDeselect.SeMovio == false) { itemToDeselect.SeMovio = true; }
                             canNotMove = false;
                             fichaSeleccionada.removeJugadasParaComerFicha();
- 
-                        
-                        }
+                            accionEjecutada = true;
 
-                                                         
+                            if (accionEjecutada == true)
+                                break;
+                        }
+                        
+
+                                                     
                     }
+                     
                 }
-            
+
+                if (accionEjecutada == true)
+                    break;  
             }
                if(canNotMove)
                  itemToDeselect.Position = posFichaSeleccionada;
             
             _selectedItems.Remove(itemToDeselect);
 
-            if (itemToDeselect is Rey)
-            {
-                if (((Rey)itemToDeselect).inJaque(itemToDeselect.Position, _items))
-                {
-                    
-                    this.Game.Exit();
+            //if (itemToDeselect is Rey)
+            //{
+            //    if (((Rey)itemToDeselect).inJaque(itemToDeselect.Position, _items))
+            //    {
 
-                }
+            //        this.Game.Exit();
 
-            }
+            //    }
+
+            //}
             
         } 
         #endregion

@@ -48,18 +48,29 @@ namespace Ajedrez.Models
 
             // Se inserta en un arreglo las posiciones correctas que esten dentro del tablero
             // Se verifica si el peon es blanco
-            
+            #region Movimientos Verticales
             if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y - 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y - 80);
-                posicionesValidas[IndexValidmove] = pos;
-                IndexValidmove++;
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
+
+                    IndexValidmove++;
+                }
+               
 
                 if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y - 160) == 1 && posicionInicial.Y == 500)
                 {
                     Vector2 pos1 = new Vector2(posicionInicial.X, posicionInicial.Y - 160);
-                    posicionesValidas[IndexValidmove] = pos1;
-                    IndexValidmove++;
+                    if ((estatusCasilla(pos1, listaFichas).NohayUnaFicha == true))
+                    {
+                        addJugadaMovimiento(pos1);
+                        posicionesValidas[IndexValidmove] = pos1;
+
+                        IndexValidmove++;
+                    }
 
                 }
 
@@ -69,18 +80,30 @@ namespace Ajedrez.Models
             if (Color.Equals(Colores.Black) && estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 80) == 1)
             {
                 Vector2 pos = new Vector2(posicionInicial.X, posicionInicial.Y + 80);
-                posicionesValidas[IndexValidmove] = pos;
-                IndexValidmove++;
+                if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                {
+                    addJugadaMovimiento(pos);
+                    posicionesValidas[IndexValidmove] = pos;
 
-                if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 160) == 1 && posicionInicial.Y.Equals(100))
+                    IndexValidmove++;
+                }
+
+                if (estaDentroDelTablero(posicionInicial.X, posicionInicial.Y + 160) == 1 && posicionInicial.Y == 100)
                 {
                     Vector2 pos1 = new Vector2(posicionInicial.X, posicionInicial.Y + 160);
-                    posicionesValidas[IndexValidmove] = pos1;
-                    IndexValidmove++;
+                    if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == true))
+                    {
+                        addJugadaMovimiento(pos1);
+                        posicionesValidas[IndexValidmove] = pos1;
+
+                        IndexValidmove++;
+                    }
 
                 }
 
             }
+            #endregion
+
             #region Posiciones diagonales superiores
             if (Color.Equals(Colores.White) && estaDentroDelTablero(posicionInicial.X + 80, posicionInicial.Y - 80) == 1)
             {
@@ -89,8 +112,7 @@ namespace Ajedrez.Models
                  if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
+                    
                      
                 }
 
@@ -102,8 +124,7 @@ namespace Ajedrez.Models
                 if ((estatusCasilla(pos, listaFichas).NohayUnaFicha == false) && estatusCasilla(pos, listaFichas).colorDeLaFicha.Equals(Color) == false)
                 {
                     addJugadaParaComerFicha(pos);
-                    posicionesValidas[IndexValidmove] = pos;
-                    IndexValidmove++;
+                    
                     
                 }
 
@@ -120,7 +141,7 @@ namespace Ajedrez.Models
                  {
 
                      addJugadaParaComerFicha(pos);
-                     posicionesValidas[IndexValidmove] = pos;
+                    // posicionesValidas[IndexValidmove] = pos;
                      IndexValidmove++;
 
                  }
@@ -134,7 +155,7 @@ namespace Ajedrez.Models
                  {
 
                      addJugadaParaComerFicha(pos);
-                     posicionesValidas[IndexValidmove] = pos;
+                    // posicionesValidas[IndexValidmove] = pos;
                      IndexValidmove++;
 
                  }
